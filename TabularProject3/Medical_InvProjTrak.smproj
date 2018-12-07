@@ -1,0 +1,1373 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Development</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8CE414BB-95B2-4C99-9E03-51BA72086E22}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MyRootNamespace</RootNamespace>
+    <AssemblyName>MyAssemblyName</AssemblyName>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <OutputPath>bin\</OutputPath>
+    <Name>Medical_InvProjTrak</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Development' ">
+    <OutputPath>bin\</OutputPath>
+    <DeploymentServerName>asazure://centralus.asazure.windows.net/acusas01dev</DeploymentServerName>
+    <DeploymentServerEdition>Developer</DeploymentServerEdition>
+    <DeploymentServerVersion>Unknown</DeploymentServerVersion>
+    <DeploymentServerDatabase>Medical_IncProjTrack</DeploymentServerDatabase>
+    <DeploymentServerCubeName>Inventory Project Tracker</DeploymentServerCubeName>
+    <DeploymentOptionProcessing>Default</DeploymentOptionProcessing>
+    <DeploymentOptionTransactionalDeployment>False</DeploymentOptionTransactionalDeployment>
+    <DeploymentOptionADALCache>Default</DeploymentOptionADALCache>
+    <DeploymentOptionDirectQueryMode>InMemory</DeploymentOptionDirectQueryMode>
+    <DeploymentOptionQueryImpersonation>Default</DeploymentOptionQueryImpersonation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == '' ">
+    <DeploymentServerName>asazure://centralus.asazure.windows.net/acusas01dev</DeploymentServerName>
+    <DeploymentServerEdition>Developer</DeploymentServerEdition>
+    <DeploymentServerVersion>Unknown</DeploymentServerVersion>
+    <DeploymentServerDatabase>Medical_InvProjTrak</DeploymentServerDatabase>
+    <DeploymentServerCubeName>Model</DeploymentServerCubeName>
+    <DeploymentOptionProcessing>Default</DeploymentOptionProcessing>
+    <DeploymentOptionTransactionalDeployment>False</DeploymentOptionTransactionalDeployment>
+    <DeploymentOptionADALCache>Default</DeploymentOptionADALCache>
+    <DeploymentOptionDirectQueryMode>InMemory</DeploymentOptionDirectQueryMode>
+    <DeploymentOptionQueryImpersonation>Default</DeploymentOptionQueryImpersonation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Test' ">
+    <OutputPath>bin\Test\</OutputPath>
+    <DeploymentServerName>asazure://centralus.asazure.windows.net/acusas01dev</DeploymentServerName>
+    <DeploymentServerEdition>Developer</DeploymentServerEdition>
+    <DeploymentServerVersion>Unknown</DeploymentServerVersion>
+    <DeploymentServerDatabase>Meidcal_InvProjTrak</DeploymentServerDatabase>
+    <DeploymentServerCubeName>Model</DeploymentServerCubeName>
+    <DeploymentOptionProcessing>Default</DeploymentOptionProcessing>
+    <DeploymentOptionTransactionalDeployment>False</DeploymentOptionTransactionalDeployment>
+    <DeploymentOptionADALCache>Default</DeploymentOptionADALCache>
+    <DeploymentOptionDirectQueryMode>InMemory</DeploymentOptionDirectQueryMode>
+    <DeploymentOptionQueryImpersonation>Default</DeploymentOptionQueryImpersonation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Production' ">
+    <OutputPath>bin\Production\</OutputPath>
+    <DeploymentServerName>asazure://centralus.asazure.windows.net/usc1productionanalysis01</DeploymentServerName>
+    <DeploymentServerEdition>Standard</DeploymentServerEdition>
+    <DeploymentServerVersion>Unknown</DeploymentServerVersion>
+    <DeploymentServerDatabase>Medical_InvProjTrak</DeploymentServerDatabase>
+    <DeploymentServerCubeName>Model</DeploymentServerCubeName>
+    <DeploymentOptionProcessing>Full</DeploymentOptionProcessing>
+    <DeploymentOptionTransactionalDeployment>False</DeploymentOptionTransactionalDeployment>
+    <DeploymentOptionADALCache>Default</DeploymentOptionADALCache>
+    <DeploymentOptionDirectQueryMode>InMemory</DeploymentOptionDirectQueryMode>
+    <DeploymentOptionQueryImpersonation>Default</DeploymentOptionQueryImpersonation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Model.bim">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Model.abf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Model.bim.layout">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Model.bim_JBUCRWaterston.settings">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin" />
+    <Folder Include="bin\" />
+    <Folder Include="bin\Data" />
+    <Folder Include="bin\Data\" />
+    <Folder Include="bin\Data\CleanupDir" />
+    <Folder Include="bin\Data\CleanupDir\" />
+    <Folder Include="bin\Data\ExcelMDX.0.asm" />
+    <Folder Include="bin\Data\ExcelMDX.0.asm\" />
+    <Folder Include="bin\Data\EXCELXLINTERNAL.0.asm" />
+    <Folder Include="bin\Data\EXCELXLINTERNAL.0.asm\" />
+    <Folder Include="bin\Data\System.0.asm" />
+    <Folder Include="bin\Data\System.0.asm\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Availlable Measures %281038%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Availlable Measures %281038%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Availlable Measures %281038%29.tbl\1051.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Availlable Measures %281038%29.tbl\1051.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl\1144.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl\1144.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Availlable Measures %281038%29%24index %281827%29%24%2844741%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Availlable Measures %281038%29%24index %281827%29%24%2844741%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Availlable Measures %281038%29%24index %281827%29%24%2844741%29.tbl\44744.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Availlable Measures %281038%29%24index %281827%29%24%2844741%29.tbl\44744.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Availlable Measures %281038%29%24Measure %281047%29%24%2844724%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Availlable Measures %281038%29%24Measure %281047%29%24%2844724%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Availlable Measures %281038%29%24Measure %281047%29%24%2844724%29.tbl\44727.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Availlable Measures %281038%29%24Measure %281047%29%24%2844724%29.tbl\44727.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Measure %2837%29%24%2844591%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Measure %2837%29%24%2844591%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Measure %2837%29%24%2844591%29.tbl\44594.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Measure %2837%29%24%2844591%29.tbl\44594.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Month %281044%29%24%2844642%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Month %281044%29%24%2844642%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Month %281044%29%24%2844642%29.tbl\44645.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Month %281044%29%24%2844642%29.tbl\44645.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Region %2839%29%24%2844625%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Region %2839%29%24%2844625%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Region %2839%29%24%2844625%29.tbl\44628.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Region %2839%29%24%2844625%29.tbl\44628.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Site   BU %2838%29%24%2844608%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Site   BU %2838%29%24%2844608%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Site   BU %2838%29%24%2844608%29.tbl\44611.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Site   BU %2838%29%24%2844608%29.tbl\44611.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24SITEREGION %281046%29%24%2844659%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24SITEREGION %281046%29%24%2844659%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24SITEREGION %281046%29%24%2844659%29.tbl\44662.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24SITEREGION %281046%29%24%2844659%29.tbl\44662.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Values K %282482%29%24%2844676%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Values K %282482%29%24%2844676%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Values K %282482%29%24%2844676%29.tbl\44679.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Values K %282482%29%24%2844676%29.tbl\44679.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MIndex %281142%29%24%2844838%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MIndex %281142%29%24%2844838%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MIndex %281142%29%24%2844838%29.tbl\44841.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MIndex %281142%29%24%2844838%29.tbl\44841.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MonthYear %281141%29%24%2844821%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MonthYear %281141%29%24%2844821%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MonthYear %281141%29%24%2844821%29.tbl\44824.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MonthYear %281141%29%24%2844821%29.tbl\44824.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Add Column2 %2818872%29%24%2845435%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Add Column2 %2818872%29%24%2845435%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Add Column2 %2818872%29%24%2845435%29.tbl\45438.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Add Column2 %2818872%29%24%2845435%29.tbl\45438.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Apr 19 %289134%29%24%2845122%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Apr 19 %289134%29%24%2845122%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Apr 19 %289134%29%24%2845122%29.tbl\45125.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Apr 19 %289134%29%24%2845122%29.tbl\45125.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Aug 18 %289126%29%24%2844986%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Aug 18 %289126%29%24%2844986%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Aug 18 %289126%29%24%2844986%29.tbl\44989.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Aug 18 %289126%29%24%2844986%29.tbl\44989.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24BURegion %289119%29%24%2844867%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24BURegion %289119%29%24%2844867%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24BURegion %289119%29%24%2844867%29.tbl\44870.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24BURegion %289119%29%24%2844867%29.tbl\44870.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Calculated Column 1 %2810814%29%24%2845401%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Calculated Column 1 %2810814%29%24%2845401%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Calculated Column 1 %2810814%29%24%2845401%29.tbl\45404.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Calculated Column 1 %2810814%29%24%2845401%29.tbl\45404.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Comments %289138%29%24%2845190%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Comments %289138%29%24%2845190%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Comments %289138%29%24%2845190%29.tbl\45193.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Comments %289138%29%24%2845190%29.tbl\45193.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ContentType %289141%29%24%2845241%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ContentType %289141%29%24%2845241%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ContentType %289141%29%24%2845241%29.tbl\45244.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ContentType %289141%29%24%2845241%29.tbl\45244.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ContentTypeID %289139%29%24%2845207%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ContentTypeID %289139%29%24%2845207%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ContentTypeID %289139%29%24%2845207%29.tbl\45210.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ContentTypeID %289139%29%24%2845207%29.tbl\45210.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Created %289143%29%24%2845270%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Created %289143%29%24%2845270%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Created %289143%29%24%2845270%29.tbl\45273.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Created %289143%29%24%2845270%29.tbl\45273.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24CreatedBy %289149%29%24%2845367%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24CreatedBy %289149%29%24%2845367%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24CreatedBy %289149%29%24%2845367%29.tbl\45370.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24CreatedBy %289149%29%24%2845367%29.tbl\45370.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24CreatedById %289144%29%24%2845282%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24CreatedById %289144%29%24%2845282%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24CreatedById %289144%29%24%2845282%29.tbl\45285.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24CreatedById %289144%29%24%2845282%29.tbl\45285.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Dec 18 %289130%29%24%2845054%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Dec 18 %289130%29%24%2845054%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Dec 18 %289130%29%24%2845054%29.tbl\45057.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Dec 18 %289130%29%24%2845054%29.tbl\45057.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Description %289124%29%24%2844952%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Description %289124%29%24%2844952%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Description %289124%29%24%2844952%29.tbl\44955.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Description %289124%29%24%2844952%29.tbl\44955.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Feb 19 %289132%29%24%2845088%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Feb 19 %289132%29%24%2845088%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Feb 19 %289132%29%24%2845088%29.tbl\45091.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Feb 19 %289132%29%24%2845088%29.tbl\45091.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Id %289140%29%24%2845224%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Id %289140%29%24%2845224%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Id %289140%29%24%2845224%29.tbl\45227.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Id %289140%29%24%2845224%29.tbl\45227.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24InventoryBucketImpactedValue %289120%29%24%2844884%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24InventoryBucketImpactedValue %289120%29%24%2844884%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24InventoryBucketImpactedValue %289120%29%24%2844884%29.tbl\44887.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24InventoryBucketImpactedValue %289120%29%24%2844884%29.tbl\44887.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jan 19 %289131%29%24%2845071%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jan 19 %289131%29%24%2845071%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jan 19 %289131%29%24%2845071%29.tbl\45074.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jan 19 %289131%29%24%2845071%29.tbl\45074.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jul 19 %289137%29%24%2845173%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jul 19 %289137%29%24%2845173%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jul 19 %289137%29%24%2845173%29.tbl\45176.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jul 19 %289137%29%24%2845173%29.tbl\45176.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jun 19 %289136%29%24%2845156%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jun 19 %289136%29%24%2845156%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jun 19 %289136%29%24%2845156%29.tbl\45159.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Jun 19 %289136%29%24%2845156%29.tbl\45159.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Mar 19 %289133%29%24%2845105%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Mar 19 %289133%29%24%2845105%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Mar 19 %289133%29%24%2845105%29.tbl\45108.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Mar 19 %289133%29%24%2845105%29.tbl\45108.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24May 19 %289135%29%24%2845139%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24May 19 %289135%29%24%2845139%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24May 19 %289135%29%24%2845139%29.tbl\45142.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24May 19 %289135%29%24%2845139%29.tbl\45142.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Modified %289142%29%24%2845258%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Modified %289142%29%24%2845258%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Modified %289142%29%24%2845258%29.tbl\45261.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Modified %289142%29%24%2845258%29.tbl\45261.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ModifiedBy %289150%29%24%2845384%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ModifiedBy %289150%29%24%2845384%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ModifiedBy %289150%29%24%2845384%29.tbl\45387.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ModifiedBy %289150%29%24%2845384%29.tbl\45387.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ModifiedById %289145%29%24%2845299%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ModifiedById %289145%29%24%2845299%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ModifiedById %289145%29%24%2845299%29.tbl\45302.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24ModifiedById %289145%29%24%2845299%29.tbl\45302.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Nov 18 %289129%29%24%2845037%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Nov 18 %289129%29%24%2845037%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Nov 18 %289129%29%24%2845037%29.tbl\45040.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Nov 18 %289129%29%24%2845037%29.tbl\45040.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Oct 18 %289128%29%24%2845020%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Oct 18 %289128%29%24%2845020%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Oct 18 %289128%29%24%2845020%29.tbl\45023.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Oct 18 %289128%29%24%2845020%29.tbl\45023.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Owshiddenversion %289146%29%24%2845316%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Owshiddenversion %289146%29%24%2845316%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Owshiddenversion %289146%29%24%2845316%29.tbl\45319.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Owshiddenversion %289146%29%24%2845316%29.tbl\45319.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Path %289148%29%24%2845350%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Path %289148%29%24%2845350%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Path %289148%29%24%2845350%29.tbl\45353.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Path %289148%29%24%2845350%29.tbl\45353.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Project %289123%29%24%2844935%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Project %289123%29%24%2844935%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Project %289123%29%24%2844935%29.tbl\44938.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Project %289123%29%24%2844935%29.tbl\44938.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24PTValue %2818820%29%24%2845418%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24PTValue %2818820%29%24%2845418%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24PTValue %2818820%29%24%2845418%29.tbl\45421.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24PTValue %2818820%29%24%2845418%29.tbl\45421.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24PutOrTakeValue %289122%29%24%2844918%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24PutOrTakeValue %289122%29%24%2844918%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24PutOrTakeValue %289122%29%24%2844918%29.tbl\44921.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24PutOrTakeValue %289122%29%24%2844918%29.tbl\44921.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24RiskValue %289121%29%24%2844901%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24RiskValue %289121%29%24%2844901%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24RiskValue %289121%29%24%2844901%29.tbl\44904.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24RiskValue %289121%29%24%2844901%29.tbl\44904.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Sep 18 %289127%29%24%2845003%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Sep 18 %289127%29%24%2845003%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Sep 18 %289127%29%24%2845003%29.tbl\45006.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Sep 18 %289127%29%24%2845003%29.tbl\45006.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24SiteBUValue %289118%29%24%2844850%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24SiteBUValue %289118%29%24%2844850%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24SiteBUValue %289118%29%24%2844850%29.tbl\44853.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24SiteBUValue %289118%29%24%2844850%29.tbl\44853.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24StatusValue %289125%29%24%2844969%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24StatusValue %289125%29%24%2844969%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24StatusValue %289125%29%24%2844969%29.tbl\44972.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24StatusValue %289125%29%24%2844969%29.tbl\44972.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Version %289147%29%24%2845333%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Version %289147%29%24%2845333%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Version %289147%29%24%2845333%29.tbl\45336.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Inventory Project Tracker %289114%29%24Version %289147%29%24%2845333%29.tbl\45336.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Date %2816504%29%24%2845481%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Date %2816504%29%24%2845481%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Date %2816504%29%24%2845481%29.tbl\45484.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Date %2816504%29%24%2845481%29.tbl\45484.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Id %2816503%29%24%2845464%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Id %2816503%29%24%2845464%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Id %2816503%29%24%2845464%29.tbl\45467.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Id %2816503%29%24%2845464%29.tbl\45467.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24MIndex %2816566%29%24%2845510%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24MIndex %2816566%29%24%2845510%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24MIndex %2816566%29%24%2845510%29.tbl\45513.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24MIndex %2816566%29%24%2845510%29.tbl\45513.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Value %2816505%29%24%2845498%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Value %2816505%29%24%2845498%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Value %2816505%29%24%2845498%29.tbl\45501.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24IPT List DateValues Partition  2  %2816500%29%24Value %2816505%29%24%2845498%29.tbl\45501.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Measurements %281133%29%24RefreshDT %281140%29%24%2844804%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Measurements %281133%29%24RefreshDT %281140%29%24%2844804%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Measurements %281133%29%24RefreshDT %281140%29%24%2844804%29.tbl\44807.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Measurements %281133%29%24RefreshDT %281140%29%24%2844804%29.tbl\44807.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24Region %281049%29%24%2844770%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24Region %281049%29%24%2844770%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24Region %281049%29%24%2844770%29.tbl\44773.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24Region %281049%29%24%2844770%29.tbl\44773.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24Site   BU %281048%29%24%2844753%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24Site   BU %281048%29%24%2844753%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24Site   BU %281048%29%24%2844753%29.tbl\44756.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24Site   BU %281048%29%24%2844753%29.tbl\44756.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24SITEREGION %281050%29%24%2844787%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24SITEREGION %281050%29%24%2844787%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24SITEREGION %281050%29%24%2844787%29.tbl\44790.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Site and Region %281041%29%24SITEREGION %281050%29%24%2844787%29.tbl\44790.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\IPT List DateValues Partition  2  %2816500%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\IPT List DateValues Partition  2  %2816500%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\IPT List DateValues Partition  2  %2816500%29.tbl\16506.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\IPT List DateValues Partition  2  %2816500%29.tbl\16506.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Measurements %281133%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Measurements %281133%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Measurements %281133%29.tbl\1143.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Measurements %281133%29.tbl\1143.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%24240df3b4 4f56 44e7 9eed 84e56671a155 %283211%29%24%2844688%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%24240df3b4 4f56 44e7 9eed 84e56671a155 %283211%29%24%2844688%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%24240df3b4 4f56 44e7 9eed 84e56671a155 %283211%29%24%2844688%29.tbl\44691.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%24240df3b4 4f56 44e7 9eed 84e56671a155 %283211%29%24%2844688%29.tbl\44691.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%244cb8334a a4f2 4d69 b226 9a6739b4a220 %283228%29%24%2844712%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%244cb8334a a4f2 4d69 b226 9a6739b4a220 %283228%29%24%2844712%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%244cb8334a a4f2 4d69 b226 9a6739b4a220 %283228%29%24%2844712%29.tbl\44715.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%244cb8334a a4f2 4d69 b226 9a6739b4a220 %283228%29%24%2844712%29.tbl\44715.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%24cb4dff2e 2ee6 4f8f 89cd 64282f382884 %284591%29%24%2844700%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%24cb4dff2e 2ee6 4f8f 89cd 64282f382884 %284591%29%24%2844700%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%24cb4dff2e 2ee6 4f8f 89cd 64282f382884 %284591%29%24%2844700%29.tbl\44703.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24DataTable %2815%29%24cb4dff2e 2ee6 4f8f 89cd 64282f382884 %284591%29%24%2844700%29.tbl\44703.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24Inventory Project Tracker %289114%29%24d5294845 cc6e 4842 9447 7ed6aa297003 %2822558%29%24%2845452%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24Inventory Project Tracker %289114%29%24d5294845 cc6e 4842 9447 7ed6aa297003 %2822558%29%24%2845452%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24Inventory Project Tracker %289114%29%24d5294845 cc6e 4842 9447 7ed6aa297003 %2822558%29%24%2845452%29.tbl\45455.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24Inventory Project Tracker %289114%29%24d5294845 cc6e 4842 9447 7ed6aa297003 %2822558%29%24%2845452%29.tbl\45455.prt\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24IPT List DateValues Partition  2  %2816500%29%24122b95d0 3c9e 4adc 8e64 efbfebf27fad %2816543%29%24%2845527%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\R%24IPT List DateValues Partition  2  %2816500%29%24122b95d0 3c9e 4adc 8e64 efbfebf27fad %2816543%29%24%2845527%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\1052.prt" />
+    <Folder Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\1052.prt\" />
+    <Folder Include="bin\Data\txns" />
+    <Folder Include="bin\Data\txns\" />
+    <Folder Include="bin\Data\VBAMDX.0.asm" />
+    <Folder Include="bin\Data\VBAMDX.0.asm\" />
+    <Folder Include="bin\Data\VBAMDXINTERNAL.0.asm" />
+    <Folder Include="bin\Data\VBAMDXINTERNAL.0.asm\" />
+    <Folder Include="bin\Production" />
+    <Folder Include="bin\Production\" />
+    <Folder Include="bin\Test" />
+    <Folder Include="bin\Test\" />
+    <Folder Include="obj" />
+    <Folder Include="obj\" />
+    <Folder Include="obj\Debug" />
+    <Folder Include="obj\Debug\" />
+    <Folder Include="obj\Development" />
+    <Folder Include="obj\Development\" />
+    <Folder Include="obj\Production" />
+    <Folder Include="obj\Production\" />
+    <Folder Include="obj\Test" />
+    <Folder Include="obj\Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Model.asdatabase">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Model.deploymentoptions">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Model.deploymenttargets">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\Administrators.23.role.xml">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\CryptKey.bin">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\ExcelMDX.0.asm.xml">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\EXCELXLINTERNAL.0.asm.xml">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\master.vmp">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\System.0.asm.xml">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db.xml">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\VBAMDX.0.asm.xml">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\VBAMDXINTERNAL.0.asm.xml">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\1.CryptKey.bin">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\metadata.sqlitedb">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Availlable Measures %281038%29.tbl\43.Availlable Measures %281038%29.Measure %281047%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Availlable Measures %281038%29.tbl\77.H%24Availlable Measures %281038%29%24index %281827%29.hidx">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Availlable Measures %281038%29.tbl\1051.prt\43.Availlable Measures %281038%29.index %281827%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Availlable Measures %281038%29.tbl\1051.prt\43.Availlable Measures %281038%29.index %281827%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Availlable Measures %281038%29.tbl\1051.prt\43.Availlable Measures %281038%29.Measure %281047%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Availlable Measures %281038%29.tbl\1051.prt\43.Availlable Measures %281038%29.Measure %281047%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\48.DataTable %2815%29.Measure %2837%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\48.DataTable %2815%29.Month %281044%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\48.DataTable %2815%29.Region %2839%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\48.DataTable %2815%29.Site   BU %2838%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\48.DataTable %2815%29.SITEREGION %281046%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\77.H%24DataTable %2815%29%24Values K %282482%29.hidx">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.Measure %2837%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.Measure %2837%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.Month %281044%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.Month %281044%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.Region %2839%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.Region %2839%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.RowNumber 2662979B 1795 4F74 8F37 6A1BA8059B61 %2816%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.RowNumber 2662979B 1795 4F74 8F37 6A1BA8059B61 %2816%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.Site   BU %2838%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.Site   BU %2838%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.SITEREGION %281046%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.SITEREGION %281046%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.Values K %282482%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\DataTable %2815%29.tbl\53.prt\48.DataTable %2815%29.Values K %282482%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl\42.Dates %281136%29.MonthYear %281141%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl\79.H%24Dates %281136%29%24MIndex %281142%29.hidx">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl\1144.prt\42.Dates %281136%29.MIndex %281142%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl\1144.prt\42.Dates %281136%29.MIndex %281142%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl\1144.prt\42.Dates %281136%29.MonthYear %281141%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl\1144.prt\42.Dates %281136%29.MonthYear %281141%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl\1144.prt\42.Dates %281136%29.RowNumber 2662979B 1795 4F74 8F37 6A1BA8059B61 %281137%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Dates %281136%29.tbl\1144.prt\42.Dates %281136%29.RowNumber 2662979B 1795 4F74 8F37 6A1BA8059B61 %281137%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Measure %2837%29%24%2844591%29.tbl\44594.prt\81.H%24DataTable %2815%29%24Measure %2837%29.ID_TO_POS.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Measure %2837%29%24%2844591%29.tbl\44594.prt\81.H%24DataTable %2815%29%24Measure %2837%29.ID_TO_POS.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Measure %2837%29%24%2844591%29.tbl\44594.prt\81.H%24DataTable %2815%29%24Measure %2837%29.POS_TO_ID.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Measure %2837%29%24%2844591%29.tbl\44594.prt\81.H%24DataTable %2815%29%24Measure %2837%29.POS_TO_ID.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Month %281044%29%24%2844642%29.tbl\44645.prt\79.H%24DataTable %2815%29%24Month %281044%29.ID_TO_POS.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Month %281044%29%24%2844642%29.tbl\44645.prt\79.H%24DataTable %2815%29%24Month %281044%29.ID_TO_POS.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Month %281044%29%24%2844642%29.tbl\44645.prt\79.H%24DataTable %2815%29%24Month %281044%29.POS_TO_ID.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Month %281044%29%24%2844642%29.tbl\44645.prt\79.H%24DataTable %2815%29%24Month %281044%29.POS_TO_ID.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Region %2839%29%24%2844625%29.tbl\44628.prt\81.H%24DataTable %2815%29%24Region %2839%29.ID_TO_POS.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Region %2839%29%24%2844625%29.tbl\44628.prt\81.H%24DataTable %2815%29%24Region %2839%29.ID_TO_POS.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Region %2839%29%24%2844625%29.tbl\44628.prt\81.H%24DataTable %2815%29%24Region %2839%29.POS_TO_ID.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Region %2839%29%24%2844625%29.tbl\44628.prt\81.H%24DataTable %2815%29%24Region %2839%29.POS_TO_ID.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Site   BU %2838%29%24%2844608%29.tbl\44611.prt\81.H%24DataTable %2815%29%24Site   BU %2838%29.ID_TO_POS.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Site   BU %2838%29%24%2844608%29.tbl\44611.prt\81.H%24DataTable %2815%29%24Site   BU %2838%29.ID_TO_POS.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Site   BU %2838%29%24%2844608%29.tbl\44611.prt\81.H%24DataTable %2815%29%24Site   BU %2838%29.POS_TO_ID.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Site   BU %2838%29%24%2844608%29.tbl\44611.prt\81.H%24DataTable %2815%29%24Site   BU %2838%29.POS_TO_ID.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24DataTable %2815%29%24Values K %282482%29%24%2844676%29.tbl\44679.prt\77.H%24DataTable %2815%29%24Values K %282482%29.POS_TO_ID.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MIndex %281142%29%24%2844838%29.tbl\44841.prt\79.H%24Dates %281136%29%24MIndex %281142%29.POS_TO_ID.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MIndex %281142%29%24%2844838%29.tbl\44841.prt\79.H%24Dates %281136%29%24MIndex %281142%29.POS_TO_ID.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MonthYear %281141%29%24%2844821%29.tbl\44824.prt\81.H%24Dates %281136%29%24MonthYear %281141%29.ID_TO_POS.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MonthYear %281141%29%24%2844821%29.tbl\44824.prt\81.H%24Dates %281136%29%24MonthYear %281141%29.ID_TO_POS.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MonthYear %281141%29%24%2844821%29.tbl\44824.prt\81.H%24Dates %281136%29%24MonthYear %281141%29.POS_TO_ID.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\H%24Dates %281136%29%24MonthYear %281141%29%24%2844821%29.tbl\44824.prt\81.H%24Dates %281136%29%24MonthYear %281141%29.POS_TO_ID.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\59.H%24Inventory Project Tracker %289114%29%24Created %289143%29.hidx">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\59.H%24Inventory Project Tracker %289114%29%24Modified %289142%29.hidx">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Add Column2 %2818872%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Apr 19 %289134%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Aug 18 %289126%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.BURegion %289119%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Comments %289138%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.ContentType %289141%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.ContentTypeID %289139%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.CreatedBy %289149%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.CreatedById %289144%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Dec 18 %289130%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Description %289124%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Feb 19 %289132%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Id %289140%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Jan 19 %289131%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Jul 19 %289137%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Jun 19 %289136%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Mar 19 %289133%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.May 19 %289135%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.ModifiedBy %289150%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.ModifiedById %289145%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Nov 18 %289129%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Oct 18 %289128%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Owshiddenversion %289146%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Path %289148%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Project %289123%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.PTValue %2818820%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.PutOrTakeValue %289122%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.RiskValue %289121%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Sep 18 %289127%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.SiteBUValue %289118%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.StatusValue %289125%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\65.Inventory Project Tracker %289114%29.Version %289147%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Add Column2 %2818872%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Apr 19 %289134%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Apr 19 %289134%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Aug 18 %289126%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Aug 18 %289126%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.BURegion %289119%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.BURegion %289119%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Comments %289138%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Comments %289138%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.ContentType %289141%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.ContentTypeID %289139%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Created %289143%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Created %289143%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.CreatedBy %289149%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.CreatedBy %289149%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.CreatedById %289144%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Dec 18 %289130%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Dec 18 %289130%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Description %289124%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Feb 19 %289132%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Feb 19 %289132%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Id %289140%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Id %289140%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Jan 19 %289131%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Jan 19 %289131%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Jul 19 %289137%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Jul 19 %289137%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Jun 19 %289136%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Jun 19 %289136%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Mar 19 %289133%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Mar 19 %289133%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.May 19 %289135%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.May 19 %289135%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Modified %289142%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Modified %289142%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.ModifiedBy %289150%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.ModifiedById %289145%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Nov 18 %289129%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Nov 18 %289129%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Oct 18 %289128%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Oct 18 %289128%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Path %289148%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Path %289148%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Project %289123%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Project %289123%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.PTValue %2818820%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.PTValue %2818820%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.RiskValue %289121%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.RiskValue %289121%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Sep 18 %289127%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Sep 18 %289127%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.SiteBUValue %289118%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.StatusValue %289125%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Version %289147%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Inventory Project Tracker %289114%29.tbl\9151.prt\65.Inventory Project Tracker %289114%29.Version %289147%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Measurements %281133%29.tbl\40.Measurements %281133%29.RefreshDT %281140%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Measurements %281133%29.tbl\1143.prt\40.Measurements %281133%29.RefreshDT %281140%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Measurements %281133%29.tbl\1143.prt\40.Measurements %281133%29.RefreshDT %281140%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\41.Site and Region %281041%29.Region %281049%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\41.Site and Region %281041%29.Site   BU %281048%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\41.Site and Region %281041%29.SITEREGION %281050%29.dictionary">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\1052.prt\41.Site and Region %281041%29.Region %281049%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\1052.prt\41.Site and Region %281041%29.Region %281049%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\1052.prt\41.Site and Region %281041%29.Site   BU %281048%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\1052.prt\41.Site and Region %281041%29.Site   BU %281048%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\1052.prt\41.Site and Region %281041%29.SITEREGION %281050%29.0.idf">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Data\TabularProject3_JBUCRWaterston_63258b23-36cd-400c-92ff-c3ff00ed28a5.3.db\Site and Region %281041%29.tbl\1052.prt\41.Site and Region %281041%29.SITEREGION %281050%29.0.idfmeta">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Production\Model.asdatabase">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Production\Model.deploymentoptions">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Production\Model.deploymenttargets">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Test\Model.asdatabase">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Test\Model.deploymentoptions">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Test\Model.deploymenttargets">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\Medical_InvProjTrak.smprojAssemblyReference.cache">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\Meidcal_InvProjTrak.smprojAssemblyReference.cache">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\TabularProject3.smprojAssemblyReference.cache">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Development\Medical_InvProjTrak.smproj.CoreCompileInputs.cache">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Development\Medical_InvProjTrak.smproj.FileListAbsolute.txt">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Development\Meidcal_InvProjTrak.smproj.CoreCompileInputs.cache">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Development\Meidcal_InvProjTrak.smproj.FileListAbsolute.txt">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Development\Model.asdatabase">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Development\Model.deploymentoptions">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Development\Model.deploymenttargets">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Production\Medical_InvProjTrak.smproj.CoreCompileInputs.cache">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Production\Medical_InvProjTrak.smproj.FileListAbsolute.txt">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Production\Model.asdatabase">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Production\Model.deploymentoptions">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Production\Model.deploymenttargets">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Test\Meidcal_InvProjTrak.smproj.CoreCompileInputs.cache">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Test\Meidcal_InvProjTrak.smproj.FileListAbsolute.txt">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Test\Model.asdatabase">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Test\Model.deploymentoptions">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Test\Model.deploymenttargets">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Business Intelligence Semantic Model\1.0\Microsoft.AnalysisServices.VSHostBuilder.targets" />
+</Project>

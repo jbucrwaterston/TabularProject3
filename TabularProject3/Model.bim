@@ -1,0 +1,1300 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1400,
+  "model": {
+    "culture": "en-GB",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "DataLake/https://usc1productiondatalake01 azuredatalakestore net/3_Curated/",
+        "connectionDetails": {
+          "protocol": "data-lake-store",
+          "address": {
+            "url": "adl://usc1productiondatalake01.azuredatalakestore.net/3_Curated/"
+          }
+        },
+        "options": {
+          "pageSize": 33554432
+        },
+        "credential": {
+          "AuthenticationKind": "OAuth2",
+          "kind": "DataLake",
+          "path": "https://usc1productiondatalake01.azuredatalakestore.net/3_Curated",
+          "Expires": "Thu, 06 Dec 2018 21:35:51 GMT",
+          "RefreshToken": "********",
+          "token_type": "********",
+          "scope": "********",
+          "ext_expires_in": "********",
+          "expires_on": "********",
+          "not_before": "********",
+          "resource": "********",
+          "id_token": "********"
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "DataTable",
+        "isHidden": true,
+        "columns": [
+          {
+            "name": "Measure",
+            "dataType": "string",
+            "sourceColumn": "Measure"
+          },
+          {
+            "name": "Site / BU",
+            "dataType": "string",
+            "sourceColumn": "Site / BU"
+          },
+          {
+            "name": "Region",
+            "dataType": "string",
+            "sourceColumn": "Region"
+          },
+          {
+            "name": "Month",
+            "dataType": "string",
+            "sourceColumn": "Month"
+          },
+          {
+            "name": "SITEREGION",
+            "dataType": "string",
+            "sourceColumn": "SITEREGION"
+          },
+          {
+            "name": "Values-K",
+            "dataType": "decimal",
+            "sourceColumn": "Values-K"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Table.Combine({DashboardData, IPTList}),",
+                "    #\"Unpivoted Columns\" = Table.UnpivotOtherColumns(Source, {\"Measure\", \"Site / BU\", \"Region\"}, \"Attribute\", \"Value\"),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Unpivoted Columns\",{{\"Attribute\", \"Month\"}}),",
+                "    #\"Trimmed Text\" = Table.TransformColumns(#\"Renamed Columns\",{{\"Measure\", Text.Trim, type text}}),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Trimmed Text\", \"Values-K\", each [Value]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Added Custom\",{{\"Values-K\", Currency.Type}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Value\"}),",
+                "    #\"Added Custom1\" = Table.AddColumn(#\"Removed Columns\", \"SITEREGION\", each Text.Replace([#\"Site / BU\"]&[Region],\" \",\"\"))",
+                "in",
+                "    #\"Added Custom1\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Available Measures",
+        "columns": [
+          {
+            "name": "Measure",
+            "dataType": "string",
+            "sourceColumn": "Measure",
+            "sortByColumn": "index"
+          },
+          {
+            "name": "index",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "index"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Table.Combine({DashboardData, IPTList}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"Measure\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Other Columns\"),",
+                "    #\"Trimmed Text\" = Table.TransformColumns(#\"Removed Duplicates\",{{\"Measure\", Text.Trim, type text}}),",
+                "    #\"Merged Queries\" = Table.NestedJoin(#\"Trimmed Text\",{\"Measure\"},Query2,{\"Measure\"},\"Query2\",JoinKind.LeftOuter),",
+                "    #\"Expanded Query2\" = Table.ExpandTableColumn(#\"Merged Queries\", \"Query2\", {\"index\"}, {\"index\"})",
+                "in",
+                "    #\"Expanded Query2\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Site and Region",
+        "columns": [
+          {
+            "name": "Site / BU",
+            "dataType": "string",
+            "sourceColumn": "Site / BU"
+          },
+          {
+            "name": "Region",
+            "dataType": "string",
+            "sourceColumn": "Region"
+          },
+          {
+            "name": "SITEREGION",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "SITEREGION"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Table.Combine({DashboardData, IPTList}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"Site / BU\", \"Region\"}),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Removed Other Columns\", \"SITEREGION\", each Text.Replace([#\"Site / BU\"] & [Region], \" \",\"\")),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Added Custom\", {\"SITEREGION\"})",
+                "in",
+                "    #\"Removed Duplicates\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Measurements",
+        "columns": [
+          {
+            "name": "RefreshDT",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "RefreshDT"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = DateTime.Time(DateTime.LocalNow()) & DateTime.Date(DateTime.LocalNow()),",
+                "    #\"Converted to Table\" = #table(1, {{Source}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Converted to Table\",{{\"Column1\", \"RefreshDT\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total (k)",
+            "expression": " SUM('DataTable'[Values-K])",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Last Refreshed",
+            "expression": " \"Last Refreshed \" &FORMAT(MAX(Measurements[RefreshDT]),\"dd-MMM-yy hh:mm\")"
+          },
+          {
+            "name": "Total",
+            "expression": " SUM('DataTable'[Values-K])*1000",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Actual vs Projection variance (k)",
+            "expression": " CALCULATE([Total (k)],'DataTable'[Measure]=\"Actual vs Projection variance\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Actual vs Projection variance",
+            "expression": " CALCULATE([Total],'DataTable'[Measure]=\"Actual vs Projection variance\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Beginning Inventory (k)",
+            "expression": " CALCULATE([Total (k)], 'DataTable'[Measure]=\"Beginning Inventory\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Beginning Inventory",
+            "expression": " CALCULATE([Total], 'DataTable'[Measure]=\"Beginning Inventory\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Orig Puts and Takes (k)",
+            "expression": " CALCULATE([Total (k)],'DataTable'[Measure]= \"Orig Puts and Takes\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Orig Puts and Takes",
+            "expression": " CALCULATE([Total],'DataTable'[Measure]= \"Orig Puts and Takes\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Projection (k)",
+            "expression": " CALCULATE([Total (k)], 'DataTable'[Measure]=\"Projection\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Projection",
+            "expression": " CALCULATE([Total], 'DataTable'[Measure]=\"Projection\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Puts/Takes (k)",
+            "expression": " CALCULATE([Total (k)], 'DataTable'[Measure]=\"Puts/Takes\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Puts/Takes",
+            "expression": " CALCULATE([Total], 'DataTable'[Measure]=\"Puts/Takes\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Actual (k)",
+            "expression": " CALCULATE([Total (k)], 'DataTable'[Measure]=\"Actual\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Actual",
+            "expression": " CALCULATE([Total], 'DataTable'[Measure]=\"Actual\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Actual to BUDGET Variance (k)",
+            "expression": " CALCULATE([Total (k)],'DataTable'[Measure]=\"Actual to BUDGET Variance\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Actual to BUDGET Variance",
+            "expression": " CALCULATE([Total],'DataTable'[Measure]=\"Actual to BUDGET Variance\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Budget (k)",
+            "expression": " CALCULATE([Total (k)],'DataTable'[Measure]=\"Budget\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Budget",
+            "expression": " CALCULATE([Total],'DataTable'[Measure]=\"Budget\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total FQ3 (k)",
+            "expression": " CALCULATE([Total (k)], 'DataTable'[Measure]=\"FQ3\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total FQ3",
+            "expression": " CALCULATE([Total], 'DataTable'[Measure]=\"FQ3\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total FQ2 (k)",
+            "expression": " CALCULATE([Total (k)],'DataTable'[Measure]=\"FQ2\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total FQ2",
+            "expression": " CALCULATE([Total],'DataTable'[Measure]=\"FQ2\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "PT - Orig PT (k)",
+            "expression": " [Puts/Takes (k)]-[Orig Puts and Takes (k)]",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "PT - Orig PT",
+            "expression": " [Puts/Takes]-[Orig Puts and Takes]",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Current Actual (k)",
+            "expression": " CALCULATE(LASTNONBLANK('DataTable'[Values-K],0), 'DataTable'[Measure] = \"Actual\")",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Current Actual",
+            "expression": " CALCULATE(LASTNONBLANK('DataTable'[Values-K],0), 'DataTable'[Measure] = \"Actual\")*1000",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "PTIndicate",
+            "expression": " if (FIRSTNONBLANK('Inventory Project Tracker'[PutOrTakeValue],0) = \"Put\", UNICHAR(11165 ), UNICHAR(11167 ))"
+          },
+          {
+            "name": "PriorityKPI",
+            "expression": " Firstnonblank('Inventory Project Tracker'[RiskNum],0)",
+            "kpi": {
+              "targetExpression": "100",
+              "statusGraphic": "Traffic Light - Single",
+              "statusExpression": [
+                "var x='Measurements'[PriorityKPI] return",
+                "            if(ISBLANK(x),BLANK(),",
+                "                    If(x<1.1,1,",
+                "\t                If(x<2.5,0,-1)",
+                "                )",
+                "            )",
+                "            "
+              ],
+              "annotations": [
+                {
+                  "name": "GoalType",
+                  "value": "StaticValue"
+                },
+                {
+                  "name": "KpiStatusType",
+                  "value": "LinearReversed"
+                },
+                {
+                  "name": "KpiThresholdType",
+                  "value": "Absolute"
+                },
+                {
+                  "name": "KpiThresholdOrdering",
+                  "value": "Ascending"
+                },
+                {
+                  "name": "KpiThresholdCount",
+                  "value": "2"
+                },
+                {
+                  "name": "KpiThreshold_0",
+                  "value": "1.1"
+                },
+                {
+                  "name": "KpiThreshold_1",
+                  "value": "2.5"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Dates",
+        "columns": [
+          {
+            "name": "MonthYear",
+            "dataType": "string",
+            "sourceColumn": "MonthYear",
+            "sortByColumn": "MIndex"
+          },
+          {
+            "name": "MIndex",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "MIndex"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"Lc67CoAwDIXhd8lcwXjvWBAHQR0ci4NKcREtYgXfXkkyfhz4OdaCCVuEFShAmJSF0XlmQhzWm5kS+/NhZsTarcyc2M5HhPpnQWzcwiyJ3XwxK6LxQi3ry8SYW0FaiOJd/B+bPg==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [MonthYear = _t, Index = _t]),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(Source,{{\"Index\", \"MIndex\"}}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"MIndex\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Inventory Project Tracker",
+        "columns": [
+          {
+            "name": "Site / BU",
+            "dataType": "string",
+            "sourceColumn": "SiteBUValue"
+          },
+          {
+            "name": "Region",
+            "dataType": "string",
+            "sourceColumn": "BURegion"
+          },
+          {
+            "name": "InventoryBucketImpacted",
+            "dataType": "string",
+            "sourceColumn": "InventoryBucketImpactedValue"
+          },
+          {
+            "name": "RiskValue",
+            "dataType": "string",
+            "sourceColumn": "RiskValue"
+          },
+          {
+            "name": "PutOrTakeValue",
+            "dataType": "string",
+            "sourceColumn": "PutOrTakeValue"
+          },
+          {
+            "name": "Project",
+            "dataType": "string",
+            "sourceColumn": "Project"
+          },
+          {
+            "name": "Description",
+            "dataType": "string",
+            "sourceColumn": "Description"
+          },
+          {
+            "name": "Status",
+            "dataType": "string",
+            "sourceColumn": "StatusValue"
+          },
+          {
+            "name": "Aug-18",
+            "dataType": "string",
+            "sourceColumn": "Aug-18"
+          },
+          {
+            "name": "Sep-18",
+            "dataType": "string",
+            "sourceColumn": "Sep-18"
+          },
+          {
+            "name": "Oct-18",
+            "dataType": "string",
+            "sourceColumn": "Oct-18"
+          },
+          {
+            "name": "Nov-18",
+            "dataType": "string",
+            "sourceColumn": "Nov-18"
+          },
+          {
+            "name": "Dec-18",
+            "dataType": "string",
+            "sourceColumn": "Dec-18"
+          },
+          {
+            "name": "Jan-19",
+            "dataType": "string",
+            "sourceColumn": "Jan-19"
+          },
+          {
+            "name": "Feb-19",
+            "dataType": "string",
+            "sourceColumn": "Feb-19"
+          },
+          {
+            "name": "Mar-19",
+            "dataType": "string",
+            "sourceColumn": "Mar-19"
+          },
+          {
+            "name": "Apr-19",
+            "dataType": "string",
+            "sourceColumn": "Apr-19"
+          },
+          {
+            "name": "May-19",
+            "dataType": "string",
+            "sourceColumn": "May-19"
+          },
+          {
+            "name": "Jun-19",
+            "dataType": "string",
+            "sourceColumn": "Jun-19"
+          },
+          {
+            "name": "Jul-19",
+            "dataType": "string",
+            "sourceColumn": "Jul-19"
+          },
+          {
+            "name": "Comments",
+            "dataType": "string",
+            "sourceColumn": "Comments"
+          },
+          {
+            "name": "ContentTypeID",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "ContentTypeID"
+          },
+          {
+            "name": "Id",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Id"
+          },
+          {
+            "name": "ContentType",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "ContentType"
+          },
+          {
+            "name": "Modified",
+            "dataType": "dateTime",
+            "sourceColumn": "Modified"
+          },
+          {
+            "name": "Created",
+            "dataType": "dateTime",
+            "sourceColumn": "Created"
+          },
+          {
+            "name": "CreatedById",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "CreatedById"
+          },
+          {
+            "name": "ModifiedById",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "ModifiedById"
+          },
+          {
+            "name": "Owshiddenversion",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Owshiddenversion"
+          },
+          {
+            "name": "Version",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Version"
+          },
+          {
+            "name": "Path",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Path"
+          },
+          {
+            "name": "CreatedBy",
+            "dataType": "string",
+            "sourceColumn": "CreatedBy"
+          },
+          {
+            "name": "ModifiedBy",
+            "dataType": "string",
+            "sourceColumn": "ModifiedBy"
+          },
+          {
+            "type": "calculated",
+            "name": "SITEREGION",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "expression": [
+              "",
+              "SUBSTITUTE(",
+              "TRIM([Site / BU])&\" \"&TRIM([Region]),",
+              "\" \", \"\")"
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "PTNum",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "expression": [
+              "IF ( ",
+              "[PutOrTakeValue] = \"Put\", 1, 0 )"
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "RiskNum",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "expression": [
+              "IF('Inventory Project Tracker'[RiskValue] = \"Low\", 1 ,",
+              "If ( 'Inventory Project Tracker'[RiskValue] = \"Medium\", 2, ",
+              "IF( 'Inventory Project Tracker'[RiskValue] = \"High\",3, 4)))"
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source=#\"Inventory Project Tracker/Partition\"",
+                "in",
+                "    Source"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "IPT_List_DateValues",
+        "columns": [
+          {
+            "name": "Id",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Id"
+          },
+          {
+            "name": "Date",
+            "dataType": "string",
+            "sourceColumn": "Date",
+            "sortByColumn": "MIndex"
+          },
+          {
+            "name": "Value",
+            "dataType": "decimal",
+            "sourceColumn": "Value",
+            "formatString": "\"£\"#,0;-\"£\"#,0;\"£\"#,0",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" ThousandSeparator=\"True\"><Currency LCID=\"2057\" DisplayName=\"£ English (United Kingdom)\" Symbol=\"£\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "MIndex",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "MIndex"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"Inventory Project Tracker/Partition\",",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"Id\", \"Aug-18\", \"Sep-18\", \"Oct-18\", \"Nov-18\", \"Dec-18\", \"Jan-19\", \"Feb-19\", \"Mar-19\", \"Apr-19\", \"May-19\", \"Jun-19\", \"Jul-19\"}),",
+                "    #\"Unpivoted Columns\" = Table.UnpivotOtherColumns(#\"Removed Other Columns\", {\"Id\"}, \"Attribute\", \"Value\"),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Unpivoted Columns\",{{\"Attribute\", \"Date\"}}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"Value\", Currency.Type}}),",
+                "    #\"Merged Queries\" = Table.NestedJoin(#\"Changed Type\",{\"Date\"},Query3,{\"MonthYear\"},\"Query3\",JoinKind.LeftOuter),",
+                "    #\"Expanded Query3\" = Table.ExpandTableColumn(#\"Merged Queries\", \"Query3\", {\"MIndex\"}, {\"MIndex\"}),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Expanded Query3\",{{\"MIndex\", Int64.Type}, {\"Id\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type1\""
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "240df3b4-4f56-44e7-9eed-84e56671a155",
+        "fromTable": "DataTable",
+        "fromColumn": "Measure",
+        "toTable": "Available Measures",
+        "toColumn": "Measure"
+      },
+      {
+        "name": "4cb8334a-a4f2-4d69-b226-9a6739b4a220",
+        "fromTable": "DataTable",
+        "fromColumn": "SITEREGION",
+        "toTable": "Site and Region",
+        "toColumn": "SITEREGION"
+      },
+      {
+        "name": "cb4dff2e-2ee6-4f8f-89cd-64282f382884",
+        "fromTable": "DataTable",
+        "fromColumn": "Month",
+        "toTable": "Dates",
+        "toColumn": "MonthYear"
+      },
+      {
+        "name": "122b95d0-3c9e-4adc-8e64-efbfebf27fad",
+        "fromTable": "IPT_List_DateValues",
+        "fromColumn": "Id",
+        "toTable": "Inventory Project Tracker",
+        "toColumn": "Id"
+      },
+      {
+        "name": "d5294845-cc6e-4842-9447-7ed6aa297003",
+        "fromTable": "Inventory Project Tracker",
+        "fromColumn": "SITEREGION",
+        "toTable": "Site and Region",
+        "toColumn": "SITEREGION"
+      }
+    ],
+    "roles": [
+      {
+        "name": "Viewer",
+        "modelPermission": "read",
+        "members": [
+          {
+            "memberName": "Carrie.Ackenhusen@smiths-medical.com",
+            "memberId": "Carrie.Ackenhusen@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Lisa.Huckins@smiths-medical.com",
+            "memberId": "Lisa.Huckins@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Andrea.Alexander@smiths-medical.com",
+            "memberId": "Andrea.Alexander@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Natanael.Amaya@smiths-medical.com",
+            "memberId": "Natanael.Amaya@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "linda.avison@smiths-medical.com",
+            "memberId": "linda.avison@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "daryll.bamford@smiths-medical.com",
+            "memberId": "daryll.bamford@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "chris.bedtke@smiths-medical.com",
+            "memberId": "chris.bedtke@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Dagmar.Beranova@smiths-medical.com",
+            "memberId": "Dagmar.Beranova@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "alec.blissett@smiths-medical.com",
+            "memberId": "alec.blissett@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "cindy.bushman@smiths-medical.com",
+            "memberId": "cindy.bushman@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "david.buye@smiths-medical.com",
+            "memberId": "david.buye@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Ross.Chipperton@smiths-medical.com",
+            "memberId": "Ross.Chipperton@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "PATRICK.CIOCIOLO-HINKELL@smiths-medical.com",
+            "memberId": "PATRICK.CIOCIOLO-HINKELL@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Julie.Coles@smiths-medical.com",
+            "memberId": "Julie.Coles@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "paul.czerlanis@smiths-medical.com",
+            "memberId": "paul.czerlanis@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "steve.dance@smiths-medical.com",
+            "memberId": "steve.dance@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Tanya.Denny@smiths-medical.com",
+            "memberId": "Tanya.Denny@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "kase.dewitt@smiths-medical.com",
+            "memberId": "kase.dewitt@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "alessandro.fefe@smiths-medical.com",
+            "memberId": "alessandro.fefe@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Earl.Ferguson@smiths-medical.com",
+            "memberId": "Earl.Ferguson@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Marcela.Gamez@smiths-medical.com",
+            "memberId": "Marcela.Gamez@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Javier.Gonzalez@smiths-medical.com",
+            "memberId": "Javier.Gonzalez@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "karolin.haertel@smiths-medical.com",
+            "memberId": "karolin.haertel@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "darren.hodkinson@smiths-medical.com",
+            "memberId": "darren.hodkinson@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "travis.hoy@smiths-medical.com",
+            "memberId": "travis.hoy@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Stanley.Hung@smiths-medical.com",
+            "memberId": "Stanley.Hung@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Lynn.Jardine@smiths-medical.com",
+            "memberId": "Lynn.Jardine@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "howard.jones@smiths-medical.com",
+            "memberId": "howard.jones@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Masatoshi.Kanzaki@smiths-medical.com",
+            "memberId": "Masatoshi.Kanzaki@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Lynne.Li@smiths-medical.com",
+            "memberId": "Lynne.Li@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "jason.lunde@smiths-medical.com",
+            "memberId": "jason.lunde@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "damian.mccrossan@smiths-medical.com",
+            "memberId": "damian.mccrossan@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "leopoldo.murillo@smiths-medical.com",
+            "memberId": "leopoldo.murillo@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "scott.nelson@smiths-medical.com",
+            "memberId": "scott.nelson@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Ryan.Odonnell@smiths-medical.com",
+            "memberId": "Ryan.Odonnell@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Frank.Reissner@smiths-medical.com",
+            "memberId": "Frank.Reissner@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "laura.Rosenberger@smiths-medical.com",
+            "memberId": "laura.Rosenberger@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "manoly.russariz@smiths-medical.com",
+            "memberId": "manoly.russariz@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "martin.stevens@smiths-medical.com",
+            "memberId": "martin.stevens@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "emma.stone@smiths-medical.com",
+            "memberId": "emma.stone@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Robert.Turoff@smiths-medical.com",
+            "memberId": "Robert.Turoff@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Enrico.Valleriani@smiths-medical.com",
+            "memberId": "Enrico.Valleriani@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Ana.Vazquez@smiths-medical.com",
+            "memberId": "Ana.Vazquez@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "nicholas.webb@smiths-medical.com",
+            "memberId": "nicholas.webb@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "jason.wibbels@smiths-medical.com",
+            "memberId": "jason.wibbels@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Paul.Wilson@smiths-medical.com",
+            "memberId": "Paul.Wilson@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "chris.percival@smiths.com",
+            "memberId": "chris.percival@smiths.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "sara.ulwelling@smiths-medical.com",
+            "memberId": "sara.ulwelling@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "ahmed.adnani@smiths.com",
+            "memberId": "ahmed.adnani@smiths.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Tina.Putnam@smiths-medical.com",
+            "memberId": "Tina.Putnam@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Eric.Clay@smiths-medical.com",
+            "memberId": "Eric.Clay@smiths-medical.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Micheal.Hermanson@smiths.com",
+            "memberId": "Micheal.Hermanson@smiths.com",
+            "identityProvider": "AzureAD"
+          }
+        ]
+      },
+      {
+        "name": "DBRefresh",
+        "modelPermission": "refresh",
+        "members": [
+          {
+            "memberName": "AZSrvAutoData-sa@smiths.net",
+            "memberId": "AZSrvAutoData-sa@smiths.net",
+            "identityProvider": "AzureAD"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DashboardData",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source=#\"DataLake/https://usc1productiondatalake01 azuredatalakestore net/3_Curated/\",",
+          "    Medical = Source{[Name=\"Medical\"]}[Content],",
+          "    SharePoint = Medical{[Name=\"SharePoint\"]}[Content],",
+          "    SupplyChain = SharePoint{[Name=\"SupplyChain\"]}[Content],",
+          "    ZZ_Inv_proj_tracker_data = SupplyChain{[Name=\"ZZ_Inv_proj_tracker_data\"]}[Content],",
+          "    #\"ZZ_Inv_proj_tracker_data csv\" = ZZ_Inv_proj_tracker_data{[Name=\"ZZ_Inv_proj_tracker_data.csv\"]}[Content],",
+          "    #\"Imported CSV\" = Csv.Document(#\"ZZ_Inv_proj_tracker_data csv\",[Delimiter=\",\", Columns=24, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Imported CSV\",{{\"Column1\", type text}, {\"Column2\", type text}, {\"Column3\", type text}, {\"Column4\", type text}, {\"Column5\", type text}, {\"Column6\", type text}, {\"Column7\", type text}, {\"Column8\", type text}, {\"Column9\", type text}, {\"Column10\", type text}, {\"Column11\", type text}, {\"Column12\", type text}, {\"Column13\", type text}, {\"Column14\", type text}, {\"Column15\", type text}, {\"Column16\", type text}, {\"Column17\", type text}, {\"Column18\", type text}, {\"Column19\", type text}, {\"Column20\", type text}, {\"Column21\", type text}, {\"Column22\", type text}, {\"Column23\", type text}, {\"Column24\", type text}}),",
+          "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+          "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Measure\", type text}, {\"Site / BU\", type text}, {\"Region\", type text}, {\"Aug-18\", type text}, {\"Sep-18\", type text}, {\"Oct-18\", type text}, {\"Nov-18\", type text}, {\"Dec-18\", type text}, {\"Jan-19\", type text}, {\"Feb-19\", type text}, {\"Mar-19\", type text}, {\"Apr-19\", type text}, {\"May-19\", type text}, {\"Jun-19\", type text}, {\"Jul-19\", type text}, {\"\", type text}, {\"_1\", type text}, {\"_2\", type text}, {\"_3\", type text}, {\"_4\", type text}, {\"_5\", type text}, {\"_6\", type text}, {\"_7\", type text}, {\"_8\", type text}}),",
+          "    #\"Filtered Rows\" = Table.SelectRows(#\"Changed Type1\", each ([Measure] <> \"Puts/Takes\")),",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Filtered Rows\",{\"\", \"_1\", \"_2\", \"_3\", \"_4\", \"_5\", \"_6\", \"_7\", \"_8\"})",
+          "in",
+          "    #\"Removed Columns\""
+        ]
+      },
+      {
+        "name": "Query1",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"TY7LCsIwEEV/Zci6oG19Li0+cKVCXYUsQjqEqEwgTQr+vWNU7O7cey7MSCma1FmMohClUIUU+0vFXH25Zq4zb0xM+sFxNooQPTTX7WHXwqCD02SQF/O8aNA6IkcWjjQgRR+e7BbZnYKzcE6xB00dtPqOPbtldu968qtWnyr4G5roPHG1Ht8fevjL8Q/lVCj1Ag==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [Measure = _t, index = _t]),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Measure\", type text}, {\"index\", Int64.Type}})",
+          "in",
+          "    #\"Changed Type\""
+        ]
+      },
+      {
+        "name": "Query2",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"TY7LCsIwEEV/Zci6oG19Li0+cKVCXYUsQjqEqEwgTQr+vWNU7O7cey7MSCma1FmMohClUIUU+0vFXH25Zq4zb0xM+sFxNooQPTTX7WHXwqCD02SQF/O8aNA6IkcWjjQgRR+e7BbZnYKzcE6xB00dtPqOPbtldu968qtWnyr4G5roPHG1Ht8fevjL8Q/lVCj1Ag==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [Measure = _t, index = _t]),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Measure\", type text}, {\"index\", Int64.Type}})",
+          "in",
+          "    #\"Changed Type\""
+        ]
+      },
+      {
+        "name": "MedicalUsers(TEMP)",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source=#\"DataLake/https://usc1productiondatalake01 azuredatalakestore net/3_Curated/\",",
+          "    Medical = Source{[Name=\"Medical\"]}[Content],",
+          "    SharePoint = Medical{[Name=\"SharePoint\"]}[Content],",
+          "    SupplyChain = SharePoint{[Name=\"SupplyChain\"]}[Content],",
+          "    UserInformationList = SupplyChain{[Name=\"UserInformationList\"]}[Content],",
+          "    #\"UserInformationa tsv\" = UserInformationList{[Name=\"UserInformationa.tsv\"]}[Content],",
+          "    #\"Imported CSV\" = Csv.Document(#\"UserInformationa tsv\",[Delimiter=\"#(tab)\", Columns=32, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+          "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Imported CSV\", [PromoteAllScalars=true]),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"ContentTypeID\", type text}, {\"Name\", type text}, {\"Account\", type text}, {\"WorkEmail\", type text}, {\"MobilePhone\", type text}, {\"AboutMe\", type text}, {\"SIPAddress\", type text}, {\"IsSiteAdmin\", type text}, {\"Deleted\", type text}, {\"Hidden\", type text}, {\"Picture\", type text}, {\"Department\", type text}, {\"Title\", type text}, {\"FirstName\", type text}, {\"LastName\", type text}, {\"WorkPhone\", type text}, {\"UserName\", type text}, {\"WebSite\", type text}, {\"AskMeAbout\", type text}, {\"Office\", type text}, {\"PictureTimestamp\", type text}, {\"PicturePlaceholderState\", type text}, {\"PictureExchangeSyncState\", type text}, {\"Id\", type number}, {\"ContentType\", type text}, {\"Modified\", type text}, {\"Created\", type text}, {\"CreatedById\", type number}, {\"ModifiedById\", type number}, {\"Owshiddenversion\", Int64.Type}, {\"Version\", type number}, {\"Path\", type text}}),",
+          "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Changed Type\",{\"Id\", \"Name\", \"WorkEmail\"})",
+          "in",
+          "    #\"Removed Other Columns\""
+        ]
+      },
+      {
+        "name": "Inventory Project Tracker/Partition",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source=#\"DataLake/https://usc1productiondatalake01 azuredatalakestore net/3_Curated/\",",
+          "    Medical = Source{[Name=\"Medical\"]}[Content],",
+          "    SharePoint = Medical{[Name=\"SharePoint\"]}[Content],",
+          "    SupplyChain = SharePoint{[Name=\"SupplyChain\"]}[Content],",
+          "    InventoryProjectTracker = SupplyChain{[Name=\"InventoryProjectTracker\"]}[Content],",
+          "    #\"Parsed JSON\" = Table.TransformColumns(InventoryProjectTracker,{{\"Content\", Json.Document}}),",
+          "    #\"Expanded Content\" = Table.ExpandListColumn(#\"Parsed JSON\", \"Content\"),",
+          "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Expanded Content\",{\"Content\"}),",
+          "    #\"Expanded Content1\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"Content\", {\"SiteBUValue\", \"BURegion\", \"InventoryBucketImpactedValue\", \"RiskValue\", \"PutOrTakeValue\", \"Project\", \"Description\", \"StatusValue\", \"AUG18\", \"SEP18\", \"OCT18\", \"NOV18\", \"DEC18\", \"JAN19\", \"FEB19\", \"MAR19\", \"APR19\", \"MAY19\", \"JUN19\", \"JUL19\", \"Comments\", \"ContentTypeID\", \"Id\", \"ContentType\", \"Modified\", \"Created\", \"CreatedById\", \"ModifiedById\", \"Owshiddenversion\", \"Version\", \"Path\"}, {\"SiteBUValue\", \"BURegion\", \"InventoryBucketImpactedValue\", \"RiskValue\", \"PutOrTakeValue\", \"Project\", \"Description\", \"StatusValue\", \"AUG18\", \"SEP18\", \"OCT18\", \"NOV18\", \"DEC18\", \"JAN19\", \"FEB19\", \"MAR19\", \"APR19\", \"MAY19\", \"JUN19\", \"JUL19\", \"Comments\", \"ContentTypeID\", \"Id\", \"ContentType\", \"Modified\", \"Created\", \"CreatedById\", \"ModifiedById\", \"Owshiddenversion\", \"Version\", \"Path\"}),",
+          "    #\"Merged Queries\" = Table.NestedJoin(#\"Expanded Content1\",{\"CreatedById\"},#\"MedicalUsers(TEMP)\",{\"Id\"},\"MedicalUsers(TEMP)\",JoinKind.LeftOuter),",
+          "    #\"Expanded MedicalUsers(TEMP)\" = Table.ExpandTableColumn(#\"Merged Queries\", \"MedicalUsers(TEMP)\", {\"Name\"}, {\"Name\"}),",
+          "    #\"Renamed Columns\" = Table.RenameColumns(#\"Expanded MedicalUsers(TEMP)\",{{\"Name\", \"CreatedBy\"}}),",
+          "    #\"Merged Queries1\" = Table.NestedJoin(#\"Renamed Columns\",{\"ModifiedById\"},#\"MedicalUsers(TEMP)\",{\"Id\"},\"MedicalUsers(TEMP)\",JoinKind.LeftOuter),",
+          "    #\"Expanded MedicalUsers(TEMP)1\" = Table.ExpandTableColumn(#\"Merged Queries1\", \"MedicalUsers(TEMP)\", {\"Name\"}, {\"Name\"}),",
+          "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Expanded MedicalUsers(TEMP)1\",{{\"Name\", \"ModifiedBy\"}}),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Renamed Columns1\",{{\"Created\", type datetime}, {\"Modified\", type datetime}}),",
+          "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Changed Type\",{{\"Created\", type date}, {\"Modified\", type date}}),",
+          "    #\"Renamed Columns2\" = Table.RenameColumns(#\"Changed Type1\",{{\"AUG18\", \"Aug-18\"}, {\"SEP18\", \"Sep-18\"}, {\"OCT18\", \"Oct-18\"}, {\"NOV18\", \"Nov-18\"}, {\"DEC18\", \"Dec-18\"}, {\"JAN19\", \"Jan-19\"}, {\"FEB19\", \"Feb-19\"}, {\"MAR19\", \"Mar-19\"}, {\"APR19\", \"Apr-19\"}, {\"MAY19\", \"May-19\"}, {\"JUN19\", \"Jun-19\"}, {\"JUL19\", \"Jul-19\"}})",
+          "in",
+          "    #\"Renamed Columns2\""
+        ]
+      },
+      {
+        "name": "IPTList",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = #\"Inventory Project Tracker/Partition\",",
+          "    #\"Renamed Columns\" = Table.RenameColumns(Source,{{\"SiteBUValue\", \"Site/BU\"}, {\"BURegion\", \"Region\"}}),",
+          "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Renamed Columns\",{\"Site/BU\", \"Region\", \"Aug-18\", \"Sep-18\", \"Oct-18\", \"Nov-18\", \"Dec-18\", \"Jan-19\", \"Feb-19\", \"Mar-19\", \"Apr-19\", \"May-19\", \"Jun-19\", \"Jul-19\"}),",
+          "    #\"Added Custom\" = Table.AddColumn(#\"Removed Other Columns\", \"Measures\", each \"Puts/Takes\"),",
+          "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Added Custom\",{{\"Measures\", \"Measure\"}, {\"Site/BU\", \"Site / BU\"}})",
+          "in",
+          "    #\"Renamed Columns1\""
+        ]
+      },
+      {
+        "name": "Query3",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"Lc67CoAwDIXhd8lcwXjvWBAHQR0ci4NKcREtYgXfXkkyfhz4OdaCCVuEFShAmJSF0XlmQhzWm5kS+/NhZsTarcyc2M5HhPpnQWzcwiyJ3XwxK6LxQi3ry8SYW0FaiOJd/B+bPg==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [MonthYear = _t, Index = _t]),",
+          "    #\"Renamed Columns\" = Table.RenameColumns(Source,{{\"Index\", \"MIndex\"}})",
+          "in",
+          "    #\"Renamed Columns\""
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "500"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
