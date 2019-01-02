@@ -20,7 +20,7 @@
           "AuthenticationKind": "OAuth2",
           "kind": "DataLake",
           "path": "https://usc1productiondatalake01.azuredatalakestore.net/3_Curated",
-          "Expires": "Thu, 06 Dec 2018 21:35:51 GMT",
+          "Expires": "Wed, 12 Dec 2018 15:43:27 GMT",
           "RefreshToken": "********",
           "token_type": "********",
           "scope": "********",
@@ -1157,6 +1157,11 @@
           {
             "memberName": "Micheal.Hermanson@smiths.com",
             "memberId": "Micheal.Hermanson@smiths.com",
+            "identityProvider": "AzureAD"
+          },
+          {
+            "memberName": "Marco.Natale@smiths-medical.com",
+            "memberId": "Marco.Natale@smiths-medical.com",
             "identityProvider": "AzureAD"
           }
         ]
