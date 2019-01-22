@@ -24,7 +24,7 @@
     <DeploymentOptionQueryImpersonation>Default</DeploymentOptionQueryImpersonation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == '' ">
-    <DeploymentServerName>asazure://centralus.asazure.windows.net/usc1productionanalysis01</DeploymentServerName>
+    <DeploymentServerName>asazure://centralus.asazure.windows.net/acusas01dev</DeploymentServerName>
     <DeploymentServerEdition>Developer</DeploymentServerEdition>
     <DeploymentServerVersion>Unknown</DeploymentServerVersion>
     <DeploymentServerDatabase>Medical_InvProjTrak</DeploymentServerDatabase>
@@ -56,7 +56,7 @@
     <DeploymentServerDatabase>Medical_InvProjTrak</DeploymentServerDatabase>
     <DeploymentServerCubeName>Model</DeploymentServerCubeName>
     <DeploymentOptionProcessing>Full</DeploymentOptionProcessing>
-    <DeploymentOptionTransactionalDeployment>False</DeploymentOptionTransactionalDeployment>
+    <DeploymentOptionTransactionalDeployment>True</DeploymentOptionTransactionalDeployment>
     <DeploymentOptionADALCache>ADTranslation</DeploymentOptionADALCache>
     <DeploymentOptionDirectQueryMode>InMemory</DeploymentOptionDirectQueryMode>
     <DeploymentOptionQueryImpersonation>Default</DeploymentOptionQueryImpersonation>
